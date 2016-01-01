@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AppInterface</string>
+    <string name="interface_icon_empty">interface_empty_icon</string>
+    <string name="interface_load_more">正在加载更多</string>
+    <string name="interface_cancel">取消</string>
+    <string name="interface_error">数据加载失败</string>
+    <string name="interface_repeat">重试</string>
+</resources>
