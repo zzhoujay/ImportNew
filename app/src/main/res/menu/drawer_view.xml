@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/app_name">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_java"
+                    android:title="@string/nav_java" />
+                <item
+                    android:id="@+id/nav_android"
+                    android:title="@string/nav_android" />
+                <item
+                    android:id="@+id/nav_ios"
+                    android:title="@string/nav_ios" />
+                <item
+                    android:id="@+id/nav_python"
+                    android:title="@string/nav_python" />
+                <item
+                    android:id="@+id/nav_web"
+                    android:title="@string/nav_web" />
+                <item
+                    android:id="@+id/nav_design"
+                    android:title="@string/nav_design" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_option">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_action_settings"
+                android:title="@string/nav_setting" />
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/ic_alert_error"
+                android:title="@string/nav_info" />
+        </menu>
+    </item>
+
+</menu>

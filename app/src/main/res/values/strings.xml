@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ImportNew</string>
+    <string name="nav_option">操作</string>
+    <string name="nav_setting">设置</string>
+    <string name="nav_info">关于</string>
+    <string name="nav_java">Java</string>
+    <string name="nav_android">Android</string>
+    <string name="nav_ios">iOS</string>
+    <string name="nav_python">Python</string>
+    <string name="nav_web">Web前端</string>
+    <string name="nav_design">设计</string>
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.design.internal.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:layout_height="match_parent">-->
+
+<com.github.florent37.materialviewpager.MaterialViewPager xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/materialViewPager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    app:viewpager_animatedHeaderImage="true"
+    app:viewpager_color="@color/colorPrimary"
+    app:viewpager_displayToolbarWhenSwipe="true"
+    app:viewpager_enableToolbarElevation="true"
+    app:viewpager_headerAdditionalHeight="20dp"
+    app:viewpager_headerAlpha="1.0"
+    app:viewpager_headerHeight="200dp"
+    app:viewpager_hideLogoWithFade="false"
+    app:viewpager_hideToolbarAndTitle="true"
+    app:viewpager_imageHeaderDarkLayerAlpha="0.2"
+    app:viewpager_logo="@layout/layout_logo"
+    app:viewpager_logoMarginTop="100dp"
+    app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
+    app:viewpager_parallaxHeaderFactor="1.5"
+    app:viewpager_transparentToolbar="false" />
+
+<!--</android.support.design.internal.ScrimInsetsFrameLayout>-->
