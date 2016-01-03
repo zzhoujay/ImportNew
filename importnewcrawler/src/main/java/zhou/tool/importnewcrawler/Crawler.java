@@ -97,7 +97,7 @@ public final class Crawler implements Serializable {
         String title = pa1.attr("title");
         String href = pa1.attr("href");
 
-        Element pa2 = pas.first();
+        Element pa2 = pas.get(1);
         String categoryHref = pa2.attr("href");
         String categoryTag = categoryHref.substring(categoryHref.lastIndexOf("/") + 1);
         String category = pa2.text();

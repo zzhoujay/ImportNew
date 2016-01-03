@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public class Type implements Serializable, Parcelable {
 
-
+    public static final String TYPE = "type";
 
     public String name;
     public String tag;

@@ -1,4 +1,4 @@
-package zhou.app.importnew.ui.fragment;
+package zhou.app.importnew.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -80,10 +80,17 @@ public class PostRecyclerViewAdapter extends RecyclerView.Adapter<PostRecyclerVi
         public Holder(View itemView) {
             super(itemView);
 
-            Slice slice = new Slice(itemView);
+            Slice slice = new Slice(itemView.findViewById(R.id.parentPanel));
 
             slice.setElevation(4);
             slice.setRadius(4);
+
+            icon = (ImageView) itemView.findViewById(R.id.icon);
+            title = (TextView) itemView.findViewById(R.id.title);
+            content = (TextView) itemView.findViewById(R.id.content);
+            time = (TextView) itemView.findViewById(R.id.time);
+            type = (TextView) itemView.findViewById(R.id.type);
+            reply = (TextView) itemView.findViewById(R.id.reply);
         }
     }
 }

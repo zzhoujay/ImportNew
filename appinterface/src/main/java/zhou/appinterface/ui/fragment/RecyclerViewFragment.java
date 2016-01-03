@@ -55,6 +55,10 @@ public class RecyclerViewFragment extends BaseFragment {
 
     }
 
+    protected void onSuccess() {
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
     public void loadMore() {
         if (loadMoreSnackbar == null) {
             loadMoreSnackbar = Snackbar.make(rootView, R.string.interface_load_more, Snackbar.LENGTH_INDEFINITE);
@@ -68,6 +72,7 @@ public class RecyclerViewFragment extends BaseFragment {
     }
 
     public void error(int reason) {
+        swipeRefreshLayout.setRefreshing(false);
         if (errorSnackbar == null) {
             errorSnackbar = Snackbar.make(rootView, R.string.interface_error, Snackbar.LENGTH_INDEFINITE);
             errorSnackbar.setAction(R.string.interface_repeat, v -> {
