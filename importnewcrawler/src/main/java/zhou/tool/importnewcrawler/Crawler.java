@@ -104,10 +104,12 @@ public final class Crawler implements Serializable {
 
         String content = postMeta.getElementsByTag("span").first().getElementsByTag("p").first().text();
 
-        String reply = null;
+        String reply;
         if (pas.size() >= 3) {
-            Element pa3 = pas.get(2);
+            Element pa3 = pas.last();
             reply = pa3.text();
+        } else {
+            reply = "0条评论";
         }
 
         return new PostItem(thumb, thumbTitle, title, time, category, categoryTag, reply, content, href);

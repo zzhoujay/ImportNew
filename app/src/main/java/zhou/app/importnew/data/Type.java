@@ -48,4 +48,12 @@ public class Type implements Serializable, Parcelable {
             return new Type[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "Type{" +
+                "name='" + name + '\'' +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
 }

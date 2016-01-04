@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <zhou.appinterface.ui.weiget.SwipeToRefreshLayout
         android:id="@+id/interface_swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,6 +13,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </zhou.appinterface.ui.weiget.SwipeToRefreshLayout>
 
 </android.support.design.widget.CoordinatorLayout>

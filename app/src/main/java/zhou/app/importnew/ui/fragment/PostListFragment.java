@@ -2,7 +2,9 @@ package zhou.app.importnew.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
@@ -10,7 +12,8 @@ import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapte
 import java.util.List;
 
 import zhou.app.importnew.App;
-import zhou.app.importnew.data.PostProvider;
+import zhou.app.importnew.R;
+import zhou.app.importnew.data.PostItemProvider;
 import zhou.app.importnew.data.Type;
 import zhou.app.importnew.model.PostItem;
 import zhou.app.importnew.ui.adapter.PostRecyclerViewAdapter;
@@ -23,36 +26,45 @@ import zhou.appinterface.util.LogKit;
  */
 public class PostListFragment extends RecyclerViewFragment {
 
-    private PostProvider provider;
+    private PostItemProvider provider;
     private PostRecyclerViewAdapter adapter;
-    private Type type;
+    private LinearLayoutManager manager;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         Bundle bundle = getArguments();
-        type = bundle.getParcelable(Type.TYPE);
+        Type type = bundle.getParcelable(Type.TYPE);
 
-        provider = new PostProvider(type, App.getApp().crawler);
+        provider = new PostItemProvider(type, App.getApp().crawler);
         adapter = new PostRecyclerViewAdapter(getContext());
 
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        manager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(new RecyclerViewMaterialAdapter(adapter));
 
-        MaterialViewPagerHelper.registerRecyclerView(getActivity(), recyclerView, null);
+        MaterialViewPagerHelper.registerRecyclerView(getActivity(), recyclerView, new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (manager.findLastVisibleItemPosition() >= adapter.getItemCount() - 1) {
+                        loadMore();
+                    }
+                }
+            }
+        });
 
         requestData();
     }
 
     private void setUpData(List<PostItem> postItems) {
-        LogKit.i("post", postItems);
+        swipeRefreshLayout.setRefreshing(false);
         if (postItems == null) {
             error(0);
-        } else if (postItems.isEmpty()) {
-
         } else {
             onSuccess();
             adapter.setPostItems(postItems);
@@ -73,6 +85,11 @@ public class PostListFragment extends RecyclerViewFragment {
     @Override
     protected void onLoadMore() {
         super.onLoadMore();
+        DataManager.more(provider, postItems -> {
+            setUpData(postItems);
+            Toast.makeText(getContext(), R.string.toast_load_success, Toast.LENGTH_SHORT).show();
+            loadMoreSnackbar.dismiss();
+        });
     }
 
     @Override

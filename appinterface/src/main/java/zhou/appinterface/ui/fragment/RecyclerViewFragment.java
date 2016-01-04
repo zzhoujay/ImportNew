@@ -20,7 +20,7 @@ public class RecyclerViewFragment extends BaseFragment {
     protected SwipeRefreshLayout swipeRefreshLayout;
     protected View rootView;
 
-    private Snackbar loadMoreSnackbar, errorSnackbar;
+    protected Snackbar loadMoreSnackbar, errorSnackbar, emptySnackbar;
 
     @Nullable
     @Override
@@ -28,9 +28,14 @@ public class RecyclerViewFragment extends BaseFragment {
         rootView = inflater.inflate(R.layout.interface_layout_recycler_view, container, false);
 
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.interface_swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_purple, android.R.color.holo_blue_bright, android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         recyclerView = (RecyclerView) swipeRefreshLayout.findViewById(R.id.interface_recycler_view);
 
         afterInitView();
+
+        swipeRefreshLayout.setOnRefreshListener(RecyclerViewFragment.this::refresh);
 
         return rootView;
     }

@@ -9,4 +9,8 @@
     <string name="nav_python">Python</string>
     <string name="nav_web">Web前端</string>
     <string name="nav_design">设计</string>
+    <string name="menu_open_in_browser">在浏览器打开</string>
+    <string name="menu_replce_web">切换到web显示</string>
+    <string name="menu_replce_text">切换到文本显示</string>
+    <string name="toast_load_success">加载成功</string>
 </resources>

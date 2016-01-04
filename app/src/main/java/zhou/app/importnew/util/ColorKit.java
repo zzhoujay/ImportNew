@@ -1,23 +1,32 @@
 package zhou.app.importnew.util;
 
+import android.graphics.Color;
+
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
+import java.util.List;
+
 /**
  * Created by zhou on 16-1-3.
  */
 public class ColorKit {
 
-    private static final int[] colors = {
-            0xe51c23, 0xe91e63, 0x9c27b0, 0x673ab7, 0x3f51b5, 0x5677fc, 0x03a9f4, 0x00bcd4, 0x009688, 0x259b24,
-            0x8bc34a, 0xcddc39, 0xffeb3b, 0xffc107, 0xff9800, 0xff5722, 0x795548, 0x9e9e9e, 0x607d8b, 0x3f51b5
+    private static final String[] colorString = {
+            "#e51c23", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#5677fc", "#03a9f4", "#00bcd4", "#009688", "#259b24",
+            "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#9e9e9e", "#607d8b", "#3f51b5"
     };
 
-    private static final int len = colors.length;
+    private static final List<Integer> colors = Stream.of(colorString).map(Color::parseColor).collect(Collectors.toList());
+
+    private static final int len = colorString.length;
 
     public static int getRandomColor(String str) {
-        return colors[(str == null ? 0 : str.hashCode()) % len];
+        return colors.get((str == null ? 0 : str.hashCode()) % len);
     }
 
     public static int getRandomColor() {
-        return colors[((int) Math.abs(Math.random() * len))];
+        return colors.get(((int) Math.abs(Math.random() * len)));
     }
 
 }

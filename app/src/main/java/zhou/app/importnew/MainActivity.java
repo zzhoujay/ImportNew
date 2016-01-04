@@ -19,9 +19,12 @@ import android.widget.TextView;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
+import java.util.Arrays;
+
 import zhou.app.importnew.common.Config;
 import zhou.app.importnew.ui.fragment.PostListFragment;
 import zhou.app.importnew.util.ColorKit;
+import zhou.appinterface.util.LogKit;
 
 /**
  * Created by zhou on 16-1-1.
@@ -53,12 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (toolbar != null) {
 
+            toolbar.setNavigationIcon(null);
+
             setSupportActionBar(toolbar);
 
             final ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayShowTitleEnabled(false);
-                actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setDisplayShowHomeEnabled(true);
                 actionBar.setDisplayUseLogoEnabled(false);
                 actionBar.setHomeButtonEnabled(true);
@@ -87,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        materialViewPager.setMaterialViewPagerListener(page -> HeaderDesign.fromColorAndDrawable(ColorKit.getRandomColor(), new ColorDrawable(Color.RED)));
+        materialViewPager.setMaterialViewPagerListener(page -> HeaderDesign.fromColorAndDrawable(ColorKit.getRandomColor(), new ColorDrawable(ColorKit.getRandomColor(Config.javaTypes.get(page).tag))));
 
         materialViewPager.getViewPager().setOffscreenPageLimit(materialViewPager.getViewPager().getAdapter().getCount());
         materialViewPager.getPagerTitleStrip().setViewPager(materialViewPager.getViewPager());

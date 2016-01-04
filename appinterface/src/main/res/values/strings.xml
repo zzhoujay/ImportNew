@@ -5,4 +5,5 @@
     <string name="interface_cancel">取消</string>
     <string name="interface_error">数据加载失败</string>
     <string name="interface_repeat">重试</string>
+    <string name="interface_empty">数据为空</string>
 </resources>
