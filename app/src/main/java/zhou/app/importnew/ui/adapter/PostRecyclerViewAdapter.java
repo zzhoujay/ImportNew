@@ -27,6 +27,7 @@ public class PostRecyclerViewAdapter extends RecyclerView.Adapter<PostRecyclerVi
 
     private List<PostItem> postItems;
     private Context context;
+    private boolean showType;
 
     public PostRecyclerViewAdapter(List<PostItem> postItems, Context context) {
         this.postItems = postItems;
@@ -42,6 +43,17 @@ public class PostRecyclerViewAdapter extends RecyclerView.Adapter<PostRecyclerVi
     }
 
     public PostRecyclerViewAdapter() {
+    }
+
+    public PostRecyclerViewAdapter(List<PostItem> postItems, Context context, boolean showType) {
+        this.postItems = postItems;
+        this.context = context;
+        this.showType = showType;
+    }
+
+    public PostRecyclerViewAdapter(Context context, boolean showType) {
+        this.context = context;
+        this.showType = showType;
     }
 
     private Action2<View, Integer> onItemClickCallback = new Action2<View, Integer>() {
@@ -61,7 +73,7 @@ public class PostRecyclerViewAdapter extends RecyclerView.Adapter<PostRecyclerVi
         if (context == null) {
             context = parent.getContext();
         }
-        Holder holder = new Holder(LayoutInflater.from(context).inflate(R.layout.item_post, null));
+        Holder holder = new Holder(LayoutInflater.from(context).inflate(R.layout.item_post, null),showType);
         holder.setClickCallback(onItemClickCallback);
         return holder;
     }
@@ -100,7 +112,7 @@ public class PostRecyclerViewAdapter extends RecyclerView.Adapter<PostRecyclerVi
 
         private Action2<View, Integer> clickCallback;
 
-        public Holder(View itemView) {
+        public Holder(View itemView, boolean showType) {
             super(itemView);
 
             View parentPanel = itemView.findViewById(R.id.parentPanel);
@@ -116,6 +128,10 @@ public class PostRecyclerViewAdapter extends RecyclerView.Adapter<PostRecyclerVi
             time = (TextView) itemView.findViewById(R.id.time);
             type = (TextView) itemView.findViewById(R.id.type);
             reply = (TextView) itemView.findViewById(R.id.reply);
+
+            if (!showType) {
+                type.setVisibility(View.GONE);
+            }
 
             parentPanel.setOnClickListener(v -> {
                 if (clickCallback != null) {

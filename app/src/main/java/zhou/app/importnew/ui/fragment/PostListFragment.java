@@ -13,6 +13,7 @@ import java.util.List;
 
 import zhou.app.importnew.App;
 import zhou.app.importnew.R;
+import zhou.app.importnew.common.Config;
 import zhou.app.importnew.data.PostItemProvider;
 import zhou.app.importnew.data.Type;
 import zhou.app.importnew.model.PostItem;
@@ -38,7 +39,12 @@ public class PostListFragment extends RecyclerViewFragment {
         Type type = bundle.getParcelable(Type.TYPE);
 
         provider = new PostItemProvider(type, App.getApp().crawler);
-        adapter = new PostRecyclerViewAdapter(getContext());
+
+        boolean showType = false;
+        if (Config.javaTypes.get(0).equals(type)) {
+            showType = true;
+        }
+        adapter = new PostRecyclerViewAdapter(getContext(), showType);
 
         recyclerView.setHasFixedSize(true);
 
